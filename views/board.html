@@ -1,116 +1,134 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>mineFinger: Attendance Device sync Server | Devsmine Technologies</title>
-    <link href="../assets/css/style.css" rel="stylesheet">
-    <link href="../node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      mineFinger: Attendance Device sync Server | Devsmine Technologies
+    </title>
+    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link
+      href="../node_modules/font-awesome/css/font-awesome.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script>
-        var $ = jQuery = require("jquery");
-        var cancelled = false;
+      var $ = (jQuery = require("jquery"));
+      var cancelled = false;
     </script>
     <style>
-        .clock {
-            position: absolute;
-            top: 48%;
-            right: -80px;
-            transform: translateX(-50%) translateY(-50%);
-            color: #0f0;
-            font-size: 19px;
-            font-family: Orbitron, serif;
-            letter-spacing: 7px;
-        }
+      .clock {
+        position: absolute;
+        top: 48%;
+        right: -80px;
+        transform: translateX(-50%) translateY(-50%);
+        color: #0f0;
+        font-size: 19px;
+        font-family: Orbitron, serif;
+        letter-spacing: 7px;
+      }
 
-        .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: auto;
-            background-color: #000;
-            margin-top: 35px;
-        }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        background-color: #000;
+        margin-top: 35px;
+      }
 
-        .jumbotron {
-            height: 398px;
-            color: rgb(53, 245, 203);
-            overflow-y: scroll;
-        }
+      .jumbotron {
+        height: 398px;
+        color: rgb(53, 245, 203);
+        overflow-y: scroll;
+      }
 
-        /* width */
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
+      /* width */
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: rebeccapurple;
-        }
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: rebeccapurple;
+      }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-        }
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+      }
 
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
     </style>
-</head>
-<body>
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
         <div>
-            <a class="navbar-brand" href="javascript:;">Re-Connect</a>
-            <a class="btn btn-info" onclick="reload();" href="javascript:;" style="margin-top: -9px;" id="reload"><i class="fa fa-refresh"></i></a>
-            <span style="font-size: 30px;" href="javascript:;" id="terminalTitle_1"><code style="color:red">Offline</code></span>
+          <a class="navbar-brand" href="javascript:;">Re-Connect</a>
+          <a
+            class="btn btn-info"
+            onclick="reload();"
+            href="javascript:;"
+            style="margin-top: -9px"
+            id="reload"
+            ><i class="fa fa-refresh"></i
+          ></a>
+          <span style="font-size: 30px" href="javascript:;" id="terminalTitle_1"
+            ><code style="color: red">Offline</code></span
+          >
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <div class="nav navbar-nav navbar-right">
-                <div id="MyClockDisplay" class="clock" onload="currentTime()"></div>
-            </div>
+          <div class="nav navbar-nav navbar-right">
+            <div id="MyClockDisplay" class="clock" onload="currentTime()"></div>
+          </div>
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<div class="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
         <div class="col-md-12">
-            <div class="terminal1">
-                <div class="jumbotron" id="terminalConsole_1"></div>
-            </div>
+          <div class="terminal1">
+            <div class="jumbotron" id="terminalConsole_1"></div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<footer class="footer" align="center">
-    <div class="form-inline footerCheck" style="">
+    <footer class="footer" align="center">
+      <div class="form-inline footerCheck" style="">
         <div>
-            <strong>Devsmine Technologies</strong>
-            <p>
-                www.devsmine.com, www.devsmien.net<br>
-                <small>Mobile: 8801408486404</small>
-            </p>
+          <strong>Devsmine Technologies</strong>
+          <p>
+            www.devsmine.com, www.devsmien.net<br />
+            <small>Mobile: 8801408486404</small>
+          </p>
         </div>
-    </div>
-</footer>
-</body>
-<script src="../assets/js/helper.js"></script>
-<script type="text/javascript">
+      </div>
+    </footer>
+  </body>
+  <script src="../assets/js/helper.js"></script>
+  <script type="text/javascript">
     var path = require("path");
     var options = {
-        scriptPath: path.join(__dirname, '../engine/')
+      scriptPath: path.join(__dirname, "../engine/"),
     };
     window.onload = function () {
-        //init current time
-        currentTime();
-        realTimeData("realTimeSync.py","#terminalConsole_1","#terminalTitle_1","192.168.1.201");
+      //init current time
+      currentTime();
+      realTimeData(
+        "realTimeSync.py",
+        "#terminalConsole_1",
+        "#terminalTitle_1",
+        "192.168.1.201"
+      );
+    };
 
-
-    }
-    
-    setInterval(function(){ 
-	console.log("Oooo Yeaaa!");
-    getAttendenceThisData("192.168.1.201",today,today);
-}, 1000 * 60 * 60);//run this thang every 2 hour
-</script>
+    setInterval(function () {
+      console.log("Oooo Yeaaa!");
+      getAttendenceThisData("192.168.1.201", today, today);
+    }, 1000 * 60 * 60); //run this thang every 2 hour
+  </script>
 </html>
